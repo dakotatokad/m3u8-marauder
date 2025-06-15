@@ -1,0 +1,13 @@
+name: Run Linter
+
+on:
+  pull_request:
+    branches: [ 'main', 'develop' ]
+  workflow_dispatch:
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/ruff-action@v2

@@ -1,0 +1,123 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "m3u8-marauder"
+version = "0.1.0"
+description = "Download stupid m3u8 segmented files with ease"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "m3u8>=6.0.0",
+    "python-dotenv>=1.1.0",
+    "requests>=2.32.4",
+    "tqdm>=4.67.1",
+]
+
+[tool.ruff]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+[project.scripts]
+fetch = "src.__main__:main"
+
+[project.optional-dependencies]
+developer = [
+    "pytest>=8.4.0",
+    "pytest-cov>=6.2.1",
+    "pytest-html>=4.1.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",        # pycodestyle
+    "F",        # Pyflakes
+    "UP",       # pyupgrade
+    "B",        # flake8-bugbear
+    "SIM",      # flake8-simplify
+    "I",        # isort
+    "W",        # Pycodestyle Warnings
+    "E",        # Pycodestyle Errors
+    "COM",      # Flake8 commas
+    "LOG",      # Flake8 logging
+    "G",        # Flake8 logging format
+    "PTH",      # Flake8 path
+    "C90",      # McCabe complexity    
+    "N",        # pep8-naming
+    "PERF",     # perflint
+    "PL",       # pylint
+    "RUF100",   # unused noqa
+    "TRY",      # tryceratops
+    "PD",       # pandas-vet
+]
+ignore = [
+    "COM812",  # Commas should be used in function calls
+]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+# Enable auto-formatting of code examples in docstrings. Markdown,
+# reStructuredText code/literal blocks and doctests are all supported.
+#
+# This is currently disabled by default, but it is planned for this
+# to be opt-out in the future.
+docstring-code-format = false
+
+# Set the line length limit used when formatting code snippets in
+# docstrings.
+#
+# This only has an effect when the `docstring-code-format` setting is
+# enabled.
+docstring-code-line-length = "dynamic"
